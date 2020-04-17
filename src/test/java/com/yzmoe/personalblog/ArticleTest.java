@@ -69,9 +69,9 @@ public class ArticleTest {
     @Test
     public void setArticleTest() throws Exception {
         Article article = new Article();
-        article.setId(2);
+        article.setId(3);
         FileInputStream fileInputStream =
-                new FileInputStream("/Users/yuan/Documents/md笔记/Java基础/Java中的集合.md");
+                new FileInputStream("/Users/yuan/Documents/md笔记/算法与数据结构/排序算法.md");
         byte[] bytes = fileInputStream.readAllBytes();
         String s = new String(bytes, 0, bytes.length, "UTF-8");
 
