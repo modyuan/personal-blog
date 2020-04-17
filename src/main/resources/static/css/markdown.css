@@ -6,7 +6,7 @@
 }
 
 
-a {
+.markdown a {
     color: #4183C4;
 }
 
@@ -24,33 +24,32 @@ a {
 }
 
 
-h1 tt,
+.markdownh1 tt, .markdown
 h1 code {
     font-size: inherit;
 }
 
-h2 tt,
-h2 code {
+.markdown h2 tt, .markdown h2 code {
     font-size: inherit;
 }
 
-h3 tt,
-h3 code {
+.markdown h3 tt,
+.markdown h3 code {
     font-size: inherit;
 }
 
-h4 tt,
-h4 code {
+.markdown h4 tt,
+.markdown h4 code {
     font-size: inherit;
 }
 
-h5 tt,
-h5 code {
+.markdown h5 tt,
+.markdown h5 code {
     font-size: inherit;
 }
 
-h6 tt,
-h6 code {
+.markdown h6 tt,
+.markdown h6 code {
     font-size: inherit;
 }
 
