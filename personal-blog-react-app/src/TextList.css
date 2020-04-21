@@ -1,0 +1,31 @@
+
+.TextListItem{
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(26,26,26,.1);
+    width: 1000px;
+    margin: 20px auto;
+    padding: 16px;
+}
+
+.TextListItem h1{
+    margin: 0;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.TextListItem div[role=brief]{
+    padding-top: 10px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.TextListItem div[role=brief]::after{
+    position: absolute;
+    left:0;
+    top:0;
+    right:0;
+    display: block;
+    content: "";
+    border-bottom: 1px solid #eee;
+    margin: 0;
+}
