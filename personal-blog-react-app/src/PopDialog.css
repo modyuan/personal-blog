@@ -23,8 +23,13 @@
     font-size: 16px;
     display: flex;
     justify-content: center;
-    padding: 25px 0;
+    padding-bottom: 25px;
     position: relative;
+}
+
+.PopDialog label{
+    text-align: center;
+    margin: 14px 0 ;
 }
 
 .PopDialog input{
@@ -42,4 +47,7 @@
     border: 1px solid;
     font-size: 16px;
     padding: 5px 14px;
+    margin: 0 auto;
+    width: 100px;
+    display: block;
 }

@@ -1,11 +1,4 @@
 
-.TextListItem{
-    background-color: white;
-    box-shadow: 0 1px 3px rgba(26,26,26,.1);
-    width: 1000px;
-    margin: 20px auto;
-    padding: 16px;
-}
 
 .TextListItem h1{
     margin: 0;
@@ -13,13 +6,13 @@
     margin-bottom: 10px;
 }
 
-.TextListItem div[role=brief]{
+.TextListItem div[name=brief]{
     padding-top: 10px;
     position: relative;
     margin-bottom: 20px;
 }
 
-.TextListItem div[role=brief]::after{
+.TextListItem div[name=brief]::after{
     position: absolute;
     left:0;
     top:0;

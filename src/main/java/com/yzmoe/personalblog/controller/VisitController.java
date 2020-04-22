@@ -3,6 +3,7 @@ package com.yzmoe.personalblog.controller;
 import com.yzmoe.personalblog.pojo.Article;
 import com.yzmoe.personalblog.pojo.ResultMsg;
 import com.yzmoe.personalblog.service.ArticleService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
+@Slf4j
+@RequestMapping("/api")
 public class VisitController {
 
 
@@ -32,6 +35,7 @@ public class VisitController {
     public Object getArticleBriefList(@RequestParam Integer pageIndex,
                                       @RequestParam Integer pageSize,
                                       @RequestParam(required = false) Boolean isDesc){
+        log.info("/articles visited!");
         List<Article> list = articleService.getArticlesBriefSortedByDate(pageIndex, pageSize, (isDesc == null) ? false : isDesc);
         return list;
     }

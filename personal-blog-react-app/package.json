@@ -8,11 +8,13 @@
     "@testing-library/user-event": "^7.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "showdown": "^1.9.1",
+    "showdown-highlight": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "rm -r ../src/main/resources/static/ && mkdir ../src/main/resources/static && react-scripts build && mv -f build/* ../src/main/resources/static/ && rm -rf build",
+    "build": "rm -r ../src/main/resources/static/ ; mkdir ../src/main/resources/static && react-scripts build && mv -f build/* ../src/main/resources/static/ && rm -rf build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

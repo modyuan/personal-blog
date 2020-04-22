@@ -8,10 +8,11 @@
     left:0;
     top:0;
     width: 100vw;
+    z-index: 5;
 }
 
 .AppNav{
-
+    z-index: 5;
     height: 50px;
     width: 1000px;
     margin: 0 auto;
@@ -28,7 +29,8 @@
     margin: 0 0;
 }
 
-.AppNav li{
+.AppNav li, .AppNav li:visited{
+    z-index: 6;
     list-style-type: none;
     display: inline-block;
     margin: 0 20px;
