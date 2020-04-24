@@ -4,9 +4,8 @@ import AppNav from "./Nav";
 import TextList from "./TextList";
 import About from './About';
 import Text from "./Text";
-import PageSelector from './PageSelector'
-import showdown from "showdown";
-import showdownHighlight from "showdown-highlight";
+import PageSelector from './PageSelector';
+import UploadText from './UploadText';
 
 // 每页的文章数量
 const itemsPerPage = 10;
@@ -59,12 +58,11 @@ class App extends React.Component {
         });
     }
 
-    switchPage(path, isChangeUrl , isUpdate) {
+    switchPage(path, isForceUpdate) {
         console.log("onSwitchPage " + path);
-        if (isChangeUrl) {
-            window.history.pushState(null, '', path);
-        }
-        if(isUpdate){
+        window.history.pushState(null, '', path);
+
+        if(isForceUpdate){
             this.forceUpdate();
         }
     }
@@ -138,7 +136,7 @@ class App extends React.Component {
 
     onClickPageSelector = (index) => {
         this.loadTextList(index, () => {
-            this.switchPage("/list/"+index, true,false);
+            this.switchPage("/list/" + index, false);
         });
     }
 
@@ -156,7 +154,59 @@ class App extends React.Component {
 
     onClickTextListItem = (id) => {
         this.loadText(id, () => {
-            this.switchPage("/text/" + id, true,false);
+            this.switchPage("/text/" + id, false);
+        });
+    }
+
+    onTextWantModify = (id)=>{
+        this.switchPage("/edit/" + id, true);
+    }
+
+    onUpdateOrInsertText = (data) => {
+        fetch('/api/article', {
+            method: `${data.id>=0?'put':'post'}`, credentials: "same-origin", body: JSON.stringify(data), headers: {
+                "Content-Type": "application/json; charset=UTF-8"
+            }
+        })
+            .then(response=>{
+                if(response.status===200){
+                    if(data.id>=0){
+                        //update
+                        this.loadText(data.id,()=>{
+                            this.switchPage(`/text/${data.id}`,false);
+                        });
+
+                    }else{
+                        //insert
+                        response.json().then(json=>{
+                            this.setState({currentText:null},()=>{
+                                this.switchPage(`/text/${json.id}`,true);
+                                this.checkMaxPageIndex();
+                            });
+                        })
+                    }
+                }else{
+                    alert("fail to update text id="+data.id+" code="+response.status);
+                }
+            }).catch(e=>{
+                alert("network fail!");
+        });
+    }
+
+    onDeleteText = (id)=>{
+        fetch("/api/article/"+id,{
+            method:"delete",
+            credentials:"same-origin"
+        }).then(response=>{
+            if(response.status===200){
+                window.alert("删除文章成功！");
+                this.switchPage("/",true);
+                this.loadTextList(1)
+            }else{
+                window.alert("删除失败！");
+            }
+        }).catch(e=>{
+            window.alert("无法连接到服务器！");
         });
     }
 
@@ -185,13 +235,12 @@ class App extends React.Component {
                     this.loadText(id);
                 }
                 return <Text data={this.state.currentText} login={this.state.userName !== null}
-                             onModify={this.onTextWantModify}/>
+                             onModify={this.onTextWantModify} onDeleteText={this.onDeleteText}/>
             }],
             ["^/login$", () => {
                 setTimeout(() => {
                     this.setState({showLoginDialog: true});
-                    window.history.pushState(null, '', '/');
-                    window.onpopstate();
+                    this.switchPage("/",false);
                 }, 100);
                 return null;
             }],
@@ -209,6 +258,21 @@ class App extends React.Component {
                                       cur={this.state.pageIndex}/>
                     </div>
                 );
+            }],
+            ["^/edit$",()=>{
+                return <UploadText id={-1} data={{author: this.state.userName}}  onSubmit={this.onUpdateOrInsertText} />
+            }],
+            ["^/edit/\\d+",(pathname)=>{
+                let editId = parseInt(pathname.slice(6));
+                let data = this.state.currentText;
+                if(!this.state.currentText || this.state.currentText.id !== editId) {
+                    this.loadText(editId);
+                    data = null
+                }
+                return (
+                    <UploadText id={editId} data={data} onSubmit={this.onUpdateOrInsertText} />
+                );
+
             }]
         ];
 
@@ -231,7 +295,18 @@ class App extends React.Component {
         return (
             <div>
                 <AppNav userName={this.state.userName} onRequireLogin={this.onRequireLogin}
-                        onRequireLogoff={this.onRequireLogoff}/>
+                        onRequireLogoff={this.onRequireLogoff} onNewTextClick={()=>{
+                            this.switchPage("/edit",true);
+                }} onJumpClick={
+                    (href)=>{
+                        if(href==='/'){
+                            this.switchPage("/");
+                            this.loadTextList(1);
+                        }else{
+                            this.switchPage(href,true);
+                        }
+                    }
+                } />
                 {currentShow}
                 {
                     (this.state.showLoginDialog) && <PopDialog onSubmit={this.onLogin} onClose={this.onLoginClose}/>

@@ -5,7 +5,7 @@ import './Common.css'
 function TextList(props) {
     console.log("render TextList!");
     let r = null;
-    console.log("TextList data: "+ JSON.stringify(props.data));
+    //console.log("TextList data: "+ JSON.stringify(props.data));
     if (props.data) {
         r = props.data.map(e => {
             return (
@@ -32,8 +32,8 @@ function TextListItem(props) {
                 {props.brief}
             </div>
             <div style={{display: "flex", justifyContent: "flex-end"}}>
-                <div>
-                    {props.author} 发布于 {props.date.toLocaleString()}
+                <div style={{color:"#aaa"}}>
+                    {props.author} 创建于 {props.date.toLocaleString()}
                 </div>
             </div>
         </div>

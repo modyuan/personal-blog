@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class ViewController {
 
-    @GetMapping({"/","/text/*","/list/*","/about","/login"})
+    @GetMapping({"/","/text/*","/list/*","/about","/login","/edit","/edit/*"})
     public String index(){
         return "index";
     }

@@ -3,14 +3,28 @@
 }
 
 
-.UploadText input {
+.UploadText input[name=title] {
     display: block;
-    margin: 20px;
-    min-width: 200px;
+    /* margin: 20px; */
+    width: 100%;
+    font-size: 2em;
+    text-align: center;
+    font-weight: bold;
+    /* padding: 10px; */
+    border: none;
 }
 
-.UploadText textarea{
-    margin: 20px;
-    min-width: 800px;
-    min-height: 400px;
+.UploadText input[name=tags]{
+    display: inline-block;
+    width: 100px;
+    border: none;
 }
+
+.UploadText textarea {
+    display: block;
+    width: 100%;
+    min-height: 500px;
+    padding: 5px;
+    font-size: 1em;
+}
+

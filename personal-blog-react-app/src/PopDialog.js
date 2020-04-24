@@ -62,7 +62,7 @@ class PopDialog extends React.Component {
                     <form onSubmit={(e) => this.onSubmit(e)}>
                         <label style={{"display": "block"}}> 请登录 </label>
                         <input type="text" name='username' placeholder="请输入用户名" value={this.state.username || ''}
-                               onChange={(e) => this.onChange(e)}/>
+                               onChange={(e) => this.onChange(e)}  autoFocus="autoFocus"/>
                         <input type="password" name='password' placeholder="请输入密码" value={this.state.password || ''}
                                onChange={(e) => this.onChange(e)}/>
                         <button>登录</button>

@@ -10,7 +10,8 @@ class AppNav extends React.Component {
 
         let userBar = null;
         if (this.props.userName) {
-            userBar = [<li key="username">你好，{this.props.userName}</li>,
+            userBar = [<li key="newText" onClick={this.props.onNewTextClick}>写文章</li>,
+                <li key="username">你好，{this.props.userName}</li>,
                 <li key="logoff" onClick={this.props.onRequireLogoff}>注销</li>];
         } else {
             userBar = [<li key="pleaseLogin" onClick={this.props.onRequireLogin}>请登录</li>];
@@ -20,9 +21,9 @@ class AppNav extends React.Component {
             <div>
                 <div className="AppNav-wrap">
                     <div className="AppNav">
-                        <ul>
-                            <NavPathItem href="/">首页</NavPathItem>
-                            <NavPathItem href="/about">关于</NavPathItem>
+                        <ul style={{padding:0,margin:0}}>
+                            <NavPathItem href="/" onClick={this.props.onJumpClick}>首页</NavPathItem>
+                            <NavPathItem href="/about" onClick={this.props.onJumpClick}>关于</NavPathItem>
                         </ul>
                         <div style={{display: "flex", justifyContent: "flex-end"}}>
                             {userBar}
@@ -39,18 +40,16 @@ class AppNav extends React.Component {
 
 class NavPathItem extends React.Component {
 
-    onClick = (e) => {
+    onClick = (e,href) => {
         e.preventDefault();
-        window.history.pushState(null, '', this.props.href);
-        if(window.onpopstate)
-            window.onpopstate();
+        this.props.onClick(href);
     }
 
     render() {
         return (
             <li>
                 <a style={{textDecorationLine: "none",color:"inherit"}} href={this.props.href}
-                   onClick={this.onClick}>{this.props.children}</a>
+                  onClick={(e)=>{ this.onClick(e,this.props.href)}} >{this.props.children}</a>
             </li>
         );
     }
