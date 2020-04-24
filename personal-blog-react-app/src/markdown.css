@@ -141,6 +141,7 @@ h1 code {
 .markdown table {
     padding: 0;
     word-break: initial;
+    border-collapse: collapse;
 }
 
 .markdown table tr {

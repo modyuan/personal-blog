@@ -1,0 +1,16 @@
+.UploadText {
+    padding: 20px 40px;
+}
+
+
+.UploadText input {
+    display: block;
+    margin: 20px;
+    min-width: 200px;
+}
+
+.UploadText textarea{
+    margin: 20px;
+    min-width: 800px;
+    min-height: 400px;
+}
