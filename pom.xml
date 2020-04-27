@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.yzmoe</groupId>
     <artifactId>personal-blog</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1.1</version>
     <name>personal-blog</name>
     <description>personal blog website by Spring Boot</description>
 
@@ -87,15 +87,6 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
-        <resources>
-            <resource>
-                <!-- include mapper xml files -->
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-            </resource>
-        </resources>
     </build>
 
 </project>

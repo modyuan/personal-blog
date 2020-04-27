@@ -25,7 +25,7 @@ public class ArticleTest {
     @Autowired
     ArticleMapper mapper;
 
-    @Test
+    //@Test
     public void insertTest() throws Exception {
 
         for (int i = 1; i <= 100; i++) {
@@ -48,25 +48,8 @@ public class ArticleTest {
         }
     }
 
-    @Test
-    public void getTest() throws Exception {
 
-        Article article = new Article();
-        articleService.addArticle(article);
-        //System.out.println(art);
-
-    }
-
-    @Test
-    public void insertFailTest(){
-        Article article = new Article();
-        article.setTitle("failTEST");
-        Boolean b = null;
-        System.out.println(b);
-
-    }
-
-    @Test
+    //@Test
     public void setArticleTest() throws Exception {
         Article article = new Article();
         article.setId(3);
@@ -79,13 +62,6 @@ public class ArticleTest {
         articleService.setArticleById(article);
         //System.out.println(b);
     }
-
-    @Test
-    public void testDate(){
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis()*2);
-        System.out.println(timestamp);
-    }
-
 
 
 }

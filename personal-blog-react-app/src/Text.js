@@ -7,11 +7,6 @@ import showdownHighlight from 'showdown-highlight';
 
 class Text extends React.Component {
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        window.MathJax.typeset(); // 渲染Latex数学公式
-        // 使用自己的扫描代替MathJax的全局扫描，这样可以一遍渲染出最后结果，而不用先渲染markdown，再渲染公式
-    }
-
     deleteText = (id) => {
         let c = window.confirm(`《${this.props.data.title}》\n确定要删除文章吗？`);
         if (c && this.props.onDeleteText) {
@@ -20,6 +15,12 @@ class Text extends React.Component {
     }
 
     render() {
+        setTimeout(()=>{
+            console.log("set MathJax");
+            window.MathJax.typeset(); // 渲染Latex数学公式
+            // TODO: 使用自己的扫描代替MathJax的全局扫描，这样可以一遍渲染出最后结果，而不用先渲染markdown，再渲染公式
+        },200);
+
         if (!this.props.data) {
             return <div style={{width: 1000, margin: "0 auto"}}></div>
         }
