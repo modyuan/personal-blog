@@ -8,6 +8,7 @@ function TextList(props) {
     //console.log("TextList data: "+ JSON.stringify(props.data));
     if (props.data) {
         r = props.data.map(e => {
+            if(!e) return null;
             return (
                 <TextListItem title={e.title} brief={e.brief} author={e.author}
                               date={e.date} id={e.id} key={e.id}

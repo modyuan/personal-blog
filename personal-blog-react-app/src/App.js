@@ -126,7 +126,7 @@ class App extends React.Component {
             });
             if(callback) callback();
             this.setState({
-                currentTextList: r2,
+                currentTextList: r2.length>0?r2:[null],
                 pageIndex: index,
             });
         }).catch((e) => {
